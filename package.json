@@ -1,5 +1,5 @@
 {
-	"name": "posts-rest",
+	"name": "node-complete-social-network-prep",
 	"version": "0.1.0",
 	"private": true,
 	"proxy": "http://localhost:8080",
