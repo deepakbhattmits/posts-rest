@@ -24,7 +24,7 @@ class Feed extends Component {
 	};
 
 	componentDidMount() {
-		fetch('/feed/posts')
+		fetch('URL')
 			.then((res) => {
 				if (res.status !== 200) {
 					throw new Error('Failed to fetch user status.');
@@ -52,7 +52,11 @@ class Feed extends Component {
 			page--;
 			this.setState({ postPage: page });
 		}
-		fetch('/feed/posts?page=' + page)
+		fetch(`/feed/posts?page=${page}`, {
+			headers: {
+				Authorization: `Bearer ${this.props.token}`,
+			},
+		})
 			.then((res) => {
 				if (res.status !== 200) {
 					throw new Error('Failed to fetch posts.');
@@ -60,6 +64,7 @@ class Feed extends Component {
 				return res.json();
 			})
 			.then((resData) => {
+				console.log('RESDATA : ', resData);
 				this.setState({
 					posts: resData.posts.map((post) => {
 						return {
@@ -125,6 +130,9 @@ class Feed extends Component {
 
 		fetch(url, {
 			method: method,
+			headers: {
+				Authorization: `Bearer ${this.props.token}`,
+			},
 			body: formData,
 		})
 			.then((res) => {
@@ -179,6 +187,9 @@ class Feed extends Component {
 		this.setState({ postsLoading: true });
 		fetch('/feed/post/' + postId, {
 			method: 'DELETE',
+			headers: {
+				Authorization: `Bearer ${this.props.token}`,
+			},
 		})
 			.then((res) => {
 				if (res.status !== 200 && res.status !== 201) {
