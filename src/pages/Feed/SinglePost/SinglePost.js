@@ -29,12 +29,10 @@ class SinglePost extends Component {
 			})
 			.then((resData) => {
 				const { title, imageUrl, createdAt, content } = resData.post;
-				console.log('imageUrl : ', resData.post.imageUrl);
 				this.setState({
 					title: title,
 					author: resData.post.creator.name,
-					// image: `https://images.freeimages.com/images/large-previews/f2c/effi-1-1366221.jpg`,
-					image: `http://localhost:5000/${imageUrl}`,
+					image: `/${imageUrl}`,
 					date: new Date(createdAt).toLocaleDateString('en-US'),
 					content: content,
 				});
