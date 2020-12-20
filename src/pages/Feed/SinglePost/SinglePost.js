@@ -28,13 +28,12 @@ class SinglePost extends Component {
 				return res.json();
 			})
 			.then((resData) => {
-				const { title, imageUrl, createdAt, content } = resData.post;
 				this.setState({
-					title: title,
+					title: resData.post.title,
 					author: resData.post.creator.name,
-					image: `/${imageUrl}`,
-					date: new Date(createdAt).toLocaleDateString('en-US'),
-					content: content,
+					image: `/${resData.post.imageUrl}`,
+					date: new Date(resData.post.createdAt).toLocaleDateString('en-US'),
+					content: resData.post.content,
 				});
 			})
 			.catch((err) => {
@@ -50,7 +49,7 @@ class SinglePost extends Component {
 					Created by {this.state.author} on {this.state.date}
 				</h2>
 				<div className='single-post__image'>
-					<Image contain imageUrl={this.state.image.toString()} />
+					<Image contain imageUrl={this.state.image} />
 				</div>
 				<p>{this.state.content}</p>
 			</section>
