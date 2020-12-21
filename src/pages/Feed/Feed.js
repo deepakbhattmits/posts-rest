@@ -145,7 +145,7 @@ class Feed extends Component {
 				return res.json();
 			})
 			.then((resData) => {
-				console.log('we are getting : ', resData);
+				// console.log('we are getting : ', resData);
 				const post = {
 					_id: resData.post._id,
 					title: resData.post.title,
